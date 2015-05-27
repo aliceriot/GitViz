@@ -7,6 +7,7 @@ main()
 {
     char dir[MAXLINE];
     char commit[40];
+    char head[40];
     char parents[MAXLINE];
 
     int headless;
@@ -14,6 +15,6 @@ main()
 
     getcwd(dir);
     
-    headRef(commit, dir);
+    headRef(head, dir);
     printf("%s", commit);
 }
