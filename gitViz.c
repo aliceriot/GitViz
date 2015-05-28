@@ -1,9 +1,11 @@
 #include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 #include "gitUtils.h"
 
 #define MAXLINE 1000
 
-main()
+void main()
 {
     char dir[MAXLINE];
     char commit[40];
@@ -13,8 +15,13 @@ main()
     int headless;
     int lines = 0;
 
-    getcwd(dir);
+    getcwd(dir, MAXLINE);
     
+    // get the last commit in current branch
     headRef(head, dir);
-    printf("%s", commit);
+    printf("%s", head);
+    
+    // find the parent of this commit!
+    getParent(head, parents, dir);
+
 }
