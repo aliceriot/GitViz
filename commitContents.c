@@ -11,6 +11,7 @@ void commitContents(char hash[], char contents[])
 
     commitHandle = popen(command, "r");
     fread(contents, MAXLINE, 1, commitHandle);
+    fclose(commitHandle);
 }
 
 

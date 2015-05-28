@@ -28,6 +28,7 @@ void headRef(char hash[], char dir[])
     strcat(dircopy,branchLoc);
     branch = fopen(dircopy, "r");
     fgets(hash, MAXLINE, branch);
+    fclose(branch);
 }
 
 
