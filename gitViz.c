@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include "gitUtils.h"
+#include "gitViz.h"
 
 #define MAXLINE 1000
 
@@ -23,5 +23,4 @@ void main()
     
     // find the parent of this commit!
     getParent(head, parents, dir);
-
 }
