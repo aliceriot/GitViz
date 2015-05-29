@@ -20,26 +20,19 @@ void getParent(char hash[], char parents[], char dir[])
         else if (contents[i] == ' ')
             contents[i] = '_';
 
-    printf("%s\n\n", contents);
-
-    sscanf(contents, "%s\t", scratch);
-
     i = 1;
+    parents[0] = '\0';
+
     /// FIX THIS!
     while (i < numlines) {
+        // should get 1st line
         sscanf(contents, "%s\t", line);
-        printf("%s\n\n", line);
         if (line[0] == 'p') {
-            sscanf(line, "%*s _ %s", scratch);
+            sscanf(line, "parent_%s", scratch);
             strcat(parents, scratch);
-            strcat(parents, "_");
+            strcat(parents, " ");
         }
         stringShift(contents, strlen(line));
         i++;
     }
-    /// TO HERE!
-
-    printf("%s\n\n", contents);
-    printf("%s\n\n", scratch);
-    printf("%s\n\n", parents);
 }
