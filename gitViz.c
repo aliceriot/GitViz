@@ -12,9 +12,6 @@ void main()
     char head[40];
     char parents[MAXLINE];
 
-    int headless;
-    int lines = 0;
-
     getcwd(dir, MAXLINE);
     
     // get the last commit in current branch
@@ -23,4 +20,7 @@ void main()
     
     // find the parent of this commit!
     getParent(head, parents, dir);
+    printf("\n%s", parents);
+
+    printGraph(dir,2);
 }
