@@ -2,8 +2,6 @@
 #include <string.h>
 #include "gitViz.h"
 
-
-
 int getHashes(char buffer[], char *hashes[])
 {
     // read into buffer
@@ -26,15 +24,3 @@ int getHashes(char buffer[], char *hashes[])
     return numcommits;
 }
 
-// test main
-/* void main() */
-/* { */
-/*     char buffer[1000]; */
-/*     char *hashes[100]; */
-/*     int numcommits, i; */
-
-/*     numcommits = getHashes(buffer, hashes); */
-
-/*     for (i = 0; i < numcommits; i++) */ 
-/*         printf("%s\n", hashes[i]); */
-/* } */
