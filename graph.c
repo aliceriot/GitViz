@@ -1,27 +1,20 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 #include "gitViz.h"
 
 /*     PRIVATE VARIABLES */
 
 static node *treeIndex[100];
-static node *p;
-
-void initialize()
-{
-    p = treeIndex[0];
-}
-
-// I also need something like a hash table, to store a correspondence 
-// between hashes and pointers (to node objects)
-
-/*     FUNCTIONS */
+static int p;
 
 int addNode(char hash[])
 {
-    node temp = {.commitHash = hash};
-    p = &temp;
+    node *temp;
+    temp = malloc(sizeof(node));
+    (*temp).commitHash = hash;
+    treeIndex[p] = temp;
     p++;
     return 1;
     // add to lookup table
@@ -29,11 +22,26 @@ int addNode(char hash[])
 
 void printNodeHashes()
 {
-    node *c;
-    c = treeIndex[0];
-    while (c < p) {
-        printf("%s\n", (*c).commitHash);
-        c++;
+    int i = 0;
+    while (i < p) {
+        printf("%s\n", (*treeIndex[i]).commitHash);
+        i++;
     }
 }
 
+
+
+
+
+
+// irritating helper functions
+void initialize()
+{
+    p = 0;
+}
+void deinitialize(int numcommits)
+{
+    int i;
+    for (i = 0; i < numcommits; i++)
+        free(treeIndex[i]);
+}
