@@ -10,6 +10,7 @@ void stringShift(char s[], int shift);
 void getParent(char hash[], char parents[], char dir[]);
 void printGraph(char cwd[], int numlines);
 void getFirstSix(char head[], char smallHead[]);
+int getHashes(char buffer[], char *hashes[]);
 
 // ~*~ to implement ~*~ \\
 

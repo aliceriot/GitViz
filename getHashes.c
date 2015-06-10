@@ -1,25 +1,40 @@
 #include <stdio.h>
+#include <string.h>
 #include "gitViz.h"
 
 
-// git log --reverse --format=%H
-// this gets us all the hashes, in reverse order!
 
-void getHashes()
+int getHashes(char buffer[], char *hashes[])
 {
+    // read into buffer
     FILE *hash_handle;
     char command[] = "git log --reverse --format=%H";
-    char hashes[MAXLINE];
+    char readbuffer[42];
+    char *p = buffer;
+    int numcommits = 0;
 
     hash_handle = popen(command, "r");
-    fread(hashes, MAXLINE, 1, hash_handle);
+
+    while (fgets(readbuffer, 42, hash_handle)) {
+        readbuffer[40] = '\0';
+        strcpy(p, readbuffer);
+        hashes[numcommits++] = p;
+        p += 42;
+    }
     fclose(hash_handle);
 
-    printf("%s\n", hashes);
+    return numcommits;
 }
 
+// test main
+/* void main() */
+/* { */
+/*     char buffer[1000]; */
+/*     char *hashes[100]; */
+/*     int numcommits, i; */
 
-void main()
-{
-    getHashes();
-}
+/*     numcommits = getHashes(buffer, hashes); */
+
+/*     for (i = 0; i < numcommits; i++) */ 
+/*         printf("%s\n", hashes[i]); */
+/* } */
