@@ -3,24 +3,20 @@
 #include <unistd.h>
 #include "gitViz.h"
 
-#define MAXLINE 1000
 
 void main()
 {
-    char dir[MAXLINE];
-    char commit[40];
-    char head[40];
-    char parents[MAXLINE];
+    char buffer[10000];
+    char *commits[100];
+    int numcommits, i;
 
-    getcwd(dir, MAXLINE);
-    
-    // get the last commit in current branch
-    headRef(head, dir);
-    printf("%s", head);
-    
-    // find the parent of this commit!
-    getParent(head, parents, dir);
-    printf("\n%s", parents);
+    numcommits = getHashes(buffer, commits);
 
-    printGraph(dir,2);
+    initialize();
+    for (i = 0; i < numcommits; i++)
+        addNode(commits[i]);
+
+    printNodeHashes();    
 }
+
+
