@@ -12,8 +12,11 @@ void printGraph(char cwd[], int numlines);
 void getFirstSix(char head[], char smallHead[]);
 int getHashes(char buffer[], char *hashes[]);
 
+
 // ~*~ to implement ~*~ \\
 
-//int headless(char hash[]);
+// getChildren
 
-//int printCommit(char hash[]);
+// addNode
+// addChild
+// printGraph
