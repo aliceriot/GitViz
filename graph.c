@@ -1,6 +1,11 @@
 #include <stdio.h>
 
+// define our new data type
+typedef struct Node {
+    char commitHash[42];
+    node *children[10];
+} node;
 
-char head[40];
+node *treeIndex[100];
 
-// need to define a tree struct!
+
