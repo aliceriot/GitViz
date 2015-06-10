@@ -17,6 +17,8 @@ void main()
         addNode(commits[i]);
 
     printNodeHashes();    
+
+    deinitialize(numcommits);
 }
 
 

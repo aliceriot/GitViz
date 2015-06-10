@@ -21,6 +21,7 @@ void lineformat(int numline);
 void initialize();
 int addNode(char hash[]);
 void printNodeHashes();
+void deinitialize(int numcommits);
 
 
 // ~*~ to implement ~*~ \\
