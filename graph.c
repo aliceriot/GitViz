@@ -4,12 +4,10 @@
 #include <stdlib.h>
 #include "gitViz.h"
 
-    /* PRIVATE VARIABLES */
+    /* TREE! */
 
 static node *treeIndex[100];
 static int p;
-
-    /* TREE OPERATIONS */
 
 void treeInit(char *commits[], int numcommits)
 {
