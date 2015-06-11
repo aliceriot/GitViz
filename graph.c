@@ -14,10 +14,41 @@ int addNode(char hash[])
     node *temp;
     temp = malloc(sizeof(node));
     (*temp).commitHash = hash;
+    (*temp).numchildren = 0;
     treeIndex[p] = temp;
     install(hash, p);
     p++;
     return 1;
+}
+node *getNode(char commit[])
+{
+    nlist *loc;
+    loc = lookup(commit);
+    node *ptr = treeIndex[loc->index];
+    return ptr;
+}
+
+// takes a child node hash, adds pointers to itself
+// to all parent nodes
+void addChildren(char child[])
+{
+    node *childptr = getNode(child);
+    node *parptr;
+    char *parents[10];
+    int numparents, i = 0;
+    numparents = getParent(child, parents);
+
+    for (i = 0; i < numparents; i++) {
+        parptr = getNode(parents[i]);
+        insertPtr(parptr, childptr);
+    }
+}
+
+void insertPtr(node *parent, node *child)
+{
+    int numchildren = parent->numchildren;
+    parent->children[numchildren] = child;
+    parent->numchildren++;
 }
 
 void printHash(int index)
