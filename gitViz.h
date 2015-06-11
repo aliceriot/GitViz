@@ -20,6 +20,7 @@ void printHash(int index);
 void addChildren(char child[]);
 node *getNode(char commit[]);
 void insertPtr(node *parent, node *child);
+void treeInit(char *commits[], int numcommits);
 
 void headRef(char hash[], char dir[]);
 void hashLocation(char hash[], char location[], char dir[]);
