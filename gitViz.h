@@ -39,7 +39,7 @@ struct nlist *install(char *name, int index);
 
     /* PRINTING */
 
-void printGraph(char cwd[], int numlines);
+void printGraph(char root[]);
 void getFirstSix(char head[], char smallHead[]);
 void lineformat(int numline);
 

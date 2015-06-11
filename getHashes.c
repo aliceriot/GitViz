@@ -25,4 +25,3 @@ int getHashes(char buffer[], char *hashes[])
 
     return numcommits;
 }
-
