@@ -38,7 +38,7 @@ nlist *install(char *name, int p)
         np->next = hashtab[hashval];
         hashtab[hashval] = np;
     } else
-        free((int) np->index);
+        free(np->index);
     if ((np->index = p) == NULL)
         return NULL;
     return np;

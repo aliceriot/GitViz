@@ -26,6 +26,8 @@ void main()
     printf("%d\n", hashindex);
     printHash(hashindex);
 
+    addChildren("4754c5db6989aba5415541afba288554f9715b2a");
+
     // make sure this is at the end! lol
     deinitialize(numcommits);
 }
