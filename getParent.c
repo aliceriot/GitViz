@@ -1,17 +1,18 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "gitViz.h"
 
-void getParent(char hash[], char parents[])
+int getParent(char hash[], char *parents[])
 {
     char contents[MAXLINE];
     char line[MAXLINE];
-    char scratch[MAXLINE];
+    char scratch[42];
     int i, numlines = 0;
+    char *temp;
 
     commitContents(hash, contents);
 
-    // hacky thing
     for (i=0; i<strlen(contents); i++)
         if (contents[i] == '\n') {
             contents[i] = '\t';
@@ -19,20 +20,18 @@ void getParent(char hash[], char parents[])
         }
         else if (contents[i] == ' ')
             contents[i] = '_';
-
     i = 1;
-    parents[0] = '\0';
-
-    /// FIX THIS!
+    int j = 0;
     while (i < numlines) {
-        // should get 1st line
         sscanf(contents, "%s\t", line);
         if (line[0] == 'p') {
             sscanf(line, "parent_%s", scratch);
-            strcat(parents, scratch);
-            strcat(parents, " ");
+            temp = malloc(sizeof(scratch));
+            strcpy(temp, scratch);
+            parents[j++] = temp;
         }
         stringShift(contents, strlen(line));
         i++;
     }
+    return j;
 }
