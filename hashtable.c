@@ -1,14 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "gitViz.h"
 
 #define HASHSIZE 1000
 
-struct nlist {
-    struct nlist *next;
-    char *name;
-    char *defn;
-}
-
-static struct nlist *hashtab[HASHSIZE];
+static nlist *hashtab[HASHSIZE];
 
 unsigned hash(char *s)
 {
@@ -18,9 +15,9 @@ unsigned hash(char *s)
     return hashval % HASHSIZE;
 }
 
-struct nlist *lookup(char *s)
+nlist *lookup(char *s)
 {
-    struct nlist *np;
+    nlist *np;
 
     for (np = hashtab[hash(s)]; np != NULL; np = np->next)
         if (strcmp(s, np->name) == 0)
@@ -28,21 +25,21 @@ struct nlist *lookup(char *s)
     return NULL;
 }
 
-struct nlist *install(char *name, char *defn)
+nlist *install(char *name, int p)
 {
-    struct nlist *np;
+    nlist *np;
     unsigned hashval;
 
     if ((np = lookup(name)) == NULL) {
-        np = (struct nlist *) malloc(sizeof(*np));
+        np = (nlist *) malloc(sizeof(*np));
         if (np == NULL || (np->name = strdup(name)) == NULL)
             return NULL;
         hashval = hash(name);
         np->next = hashtab[hashval];
         hashtab[hashval] = np;
     } else
-        free((void *) np->defn);
-    if ((np->defn = strdup(defn)) == NULL)
+        free((int) np->index);
+    if ((np->index = p) == NULL)
         return NULL;
     return np;
 }

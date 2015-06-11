@@ -15,9 +15,14 @@ int addNode(char hash[])
     temp = malloc(sizeof(node));
     (*temp).commitHash = hash;
     treeIndex[p] = temp;
+    install(hash, p);
     p++;
     return 1;
-    // add to lookup table
+}
+
+void printHash(int index)
+{
+    printf("%s\n", (*treeIndex[index]).commitHash);
 }
 
 void printNodeHashes()
@@ -29,12 +34,6 @@ void printNodeHashes()
     }
 }
 
-
-
-
-
-
-// irritating helper functions
 void initialize()
 {
     p = 0;
