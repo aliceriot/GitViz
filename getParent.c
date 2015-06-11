@@ -2,7 +2,7 @@
 #include <string.h>
 #include "gitViz.h"
 
-void getParent(char hash[], char parents[], char dir[])
+void getParent(char hash[], char parents[])
 {
     char contents[MAXLINE];
     char line[MAXLINE];
