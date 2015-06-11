@@ -2,6 +2,8 @@
 #include <string.h>
 #include "gitViz.h"
 
+    /* GET THOSE HASHES! */
+
 int getHashes(char buffer[], char *hashes[])
 {
     // read into buffer

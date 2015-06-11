@@ -4,10 +4,12 @@
 #include <stdlib.h>
 #include "gitViz.h"
 
-/*     PRIVATE VARIABLES */
+    /* PRIVATE VARIABLES */
 
 static node *treeIndex[100];
 static int p;
+
+    /* TREE OPERATIONS */
 
 void treeInit(char *commits[], int numcommits)
 {
@@ -18,7 +20,6 @@ void treeInit(char *commits[], int numcommits)
     for (i = 0; i < numcommits; i++)
         addChildren(commits[i]);
 }
-
 
 int addNode(char hash[])
 {
@@ -31,8 +32,7 @@ int addNode(char hash[])
     p++;
     return 1;
 }
-// takes a child node hash, adds pointers to itself
-// to all parent nodes
+
 void addChildren(char child[])
 {
     node *childptr = getNode(child);
@@ -40,7 +40,6 @@ void addChildren(char child[])
     char *parents[10];
     int numparents, i = 0;
     numparents = getParent(child, parents);
-
     for (i = 0; i < numparents; i++) {
         parptr = getNode(parents[i]);
         insertPtr(parptr, childptr);

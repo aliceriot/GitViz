@@ -3,35 +3,30 @@
 
 #define MAXLINE 1000
 
+    /* DATA INPUT */
+
 int getHashes(char buffer[], char *hashes[]);
 
-//tree related stuff
+    /* TREE OPERATIONS */
+
 typedef struct node node;
 struct node {
     char *commitHash; // these are already in an array!
     node *children[10]; // pointers to other nodes (children of this commit)
     int numchildren;
 };
-void initialize();
-int addNode(char hash[]);
-void printNodeHashes();
-void deinitialize(int numcommits);
-void printHash(int index);
-void addChildren(char child[]);
-node *getNode(char commit[]);
-void insertPtr(node *parent, node *child);
 void treeInit(char *commits[], int numcommits);
+int addNode(char hash[]);
+void addChildren(char child[]);
+void insertPtr(node *parent, node *child);
+node *getNode(char commit[]);
+void printNodeHashes();
+void printHash(int index);
+void deinitialize(int numcommits);
+void initialize();
 
-void headRef(char hash[], char dir[]);
-void hashLocation(char hash[], char location[], char dir[]);
-void commitContents(char hash[], char contents[]);
-void stringShift(char s[], int shift);
-int getParent(char hash[], char *parents[]);
-void printGraph(char cwd[], int numlines);
-void getFirstSix(char head[], char smallHead[]);
-void lineformat(int numline);
+    /* HASHTABLE */
 
-// hashtable stuff
 typedef struct nlist nlist;
 struct nlist {
     struct nlist *next;
@@ -42,11 +37,16 @@ unsigned hash(char *s);
 struct nlist *lookup(char *s);
 struct nlist *install(char *name, int index);
 
+    /* PRINTING */
 
-// ~*~ to implement ~*~ \\
+void printGraph(char cwd[], int numlines);
+void getFirstSix(char head[], char smallHead[]);
+void lineformat(int numline);
 
-// getChildren
+    /* UTILITY/MISC */
 
-// addNode
-// addChild
-// printGraph
+void headRef(char hash[], char dir[]);
+void hashLocation(char hash[], char location[], char dir[]);
+void commitContents(char hash[], char contents[]);
+void stringShift(char s[], int shift);
+int getParent(char hash[], char *parents[]);

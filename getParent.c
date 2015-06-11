@@ -2,6 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include "gitViz.h"
+        
+    /* GET THOSE PARENTS! */
 
 int getParent(char hash[], char *parents[])
 {
