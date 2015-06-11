@@ -6,7 +6,7 @@
 
     /* TREE! */
 
-static node *treeIndex[100];
+static node *treeIndex[1000];
 static int p;
 
 void treeInit(char *commits[], int numcommits)
