@@ -9,6 +9,17 @@
 static node *treeIndex[100];
 static int p;
 
+void treeInit(char *commits[], int numcommits)
+{
+    initialize();
+    int i;
+    for (i = 0; i < numcommits; i++)
+        addNode(commits[i]);
+    for (i = 0; i < numcommits; i++)
+        addChildren(commits[i]);
+}
+
+
 int addNode(char hash[])
 {
     node *temp;
@@ -20,14 +31,6 @@ int addNode(char hash[])
     p++;
     return 1;
 }
-node *getNode(char commit[])
-{
-    nlist *loc;
-    loc = lookup(commit);
-    node *ptr = treeIndex[loc->index];
-    return ptr;
-}
-
 // takes a child node hash, adds pointers to itself
 // to all parent nodes
 void addChildren(char child[])
@@ -44,6 +47,7 @@ void addChildren(char child[])
     }
 }
 
+// fun with pointers!
 void insertPtr(node *parent, node *child)
 {
     int numchildren = parent->numchildren;
@@ -51,6 +55,15 @@ void insertPtr(node *parent, node *child)
     parent->numchildren++;
 }
 
+node *getNode(char commit[])
+{
+    nlist *loc;
+    loc = lookup(commit);
+    node *ptr = treeIndex[loc->index];
+    return ptr;
+}
+
+// testing things
 void printHash(int index)
 {
     printf("%s\n", (*treeIndex[index]).commitHash);
@@ -65,6 +78,7 @@ void printNodeHashes()
     }
 }
 
+// utility functions
 void initialize()
 {
     p = 0;
