@@ -16,8 +16,17 @@ void main()
     for (i = 0; i < numcommits; i++)
         addNode(commits[i]);
 
-    printNodeHashes();    
+    printNodeHashes();
 
+
+    nlist *hashLoc;
+    hashLoc = lookup("4754c5db6989aba5415541afba288554f9715b2a");
+    int hashindex;
+    hashindex = hashLoc->index;
+    printf("%d\n", hashindex);
+    printHash(hashindex);
+
+    // make sure this is at the end! lol
     deinitialize(numcommits);
 }
 
