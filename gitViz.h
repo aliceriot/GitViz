@@ -41,7 +41,7 @@ struct nlist *install(char *name, int index);
 
 void printGraph(char root[]);
 void getFirstSix(char head[], char smallHead[]);
-void lineformat(int numline);
+void lineformat(node *children[], int numchildren);
 
     /* UTILITY/MISC */
 
