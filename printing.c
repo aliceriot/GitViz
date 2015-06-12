@@ -5,7 +5,6 @@
 
 char printBuffer[10000];
 char *p;
-char head[40];
 char tempBuffer[1000];
 char lastLineCommits[1000];
 char *lines[1000];
@@ -21,17 +20,29 @@ void printGraph(char rootHash[])
         child = root->children[i];
         printf("%s\n", child->commitHash);
     }
+    printf("%s\n", printBuffer);
 }
 
         
 
-void lineformat(int numline)
+void lineformat(node *children[], int numchildren)
 {
-    // format line in tempBuffer
+    int i;
+    char smallHead[6];
+    node *child;
+    char buffer[100];
+    char lineone[] = "\t~~~~~~\n\t";
+    char linetwo[] = "\n\t~~~~~~";
 
-    strcpy(p, tempBuffer);
-    lines[numline] = p;
-    p += strlen(tempBuffer);
+    for (i = 0; i < numchildren; i++) {
+        child = children[i];
+        getFirstSix(child->commitHash, smallHead);
+        strcat(buffer, lineone);
+        strcat(buffer, smallHead);
+        strcat(buffer, linetwo);
+    }
+    printf("%s\n", buffer);
+    strcat(printBuffer, buffer);
 }
 
  /* how to print! */
