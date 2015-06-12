@@ -24,21 +24,20 @@ void main()
 /*     printf("testing printgraph: \n\n"); */
 
     
-    node *myptr;
-    for (i = 0; i < numcommits; i++) {
-        myptr = getNode(commits[i]);
-        printf("Commit: %s\nChildren: ", myptr->commitHash);
-        printGraph(myptr->commitHash);
-        printf("\n");
-    }
-    printf("\n ##############################\n");
-    myptr = getNode(root);
+    /* node *myptr; */
+    /* for (i = 1; i < numcommits; i++) { */
+    /*     myptr = getNode(commits[i]); */
+    /*     printf("Commit: %s\nParents: ", myptr->commitHash); */
+    /*     printGraph(myptr->commitHash); */
+    /*     printf("\n"); */
+    /* } */
+    /* printf("\n ##############################\n"); */
+    /* myptr = getNode(root); */
 
     
-    lineformat(myptr->children, myptr-> numchildren);
-    lineformat(commits, numcommits);
+    /* lineformat(myptr->children, myptr-> numchildren); */
            
-    printGraph(root);
+    /* printGraph(root); */
 
     deinitialize(numcommits);
 }

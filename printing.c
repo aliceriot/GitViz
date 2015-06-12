@@ -4,26 +4,48 @@
 #include "gitViz.h"
 
 char printBuffer[10000];
-char *p;
-char tempBuffer[1000];
-char lastLineCommits[1000];
-char *lines[1000];
+node *columns[10];
 
-void printGraph(char rootHash[])
+
+
+
+void printGraph(char rootHash[], int numcommits)
 {
+    //printInitialize();
     node *root = getNode(rootHash);
-    node *parent;
-    int num = root->numparents;
-    int i;
-    for (i = 0; i < num; i++) {
-        char hash[42];
-        parent = root->parents[i];
-        printf("%s\n", parent->commitHash);
-    }
-    printf("%s\n", printBuffer);
-}
+    node *commit;
+    
+    lineFormat(rootHash);
+    columns[0] = root;
 
-void lineformat(node *children[], int numchildren)
+    int i,j;
+    for (i = 0; i < numcommits; i++) {
+        commit = getNode(commits[i]);
+        int numcols
+        if (commit->numparents == 1)
+
+
+                
+
+        
+
+
+    }
+}
+        
+    /* TO IMPLEMENT */
+
+// return the rightmost column for a commit
+int findColumn(char *hash);
+
+// remove a particular column index (do all 
+// the shifting and stuff)
+void columnShift(int index);
+
+// insert a number of columns for a commit at a location
+void columnInsert(char *hash, int numchildren, int index);
+
+void lineFormat(node *children[], int numchildren)
 {
     int i;
     char smallHead[6];

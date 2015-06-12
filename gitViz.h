@@ -13,12 +13,17 @@ typedef struct node node;
 struct node {
     char *commitHash; // these are already in an array!
     node *children[10]; // pointers to other nodes (children of this commit)
+    node *parents[10];
     int numchildren;
+    int numparents;
 };
+
 void treeInit(char *commits[], int numcommits);
 int addNode(char hash[]);
 void addChildren(char child[]);
-void insertPtr(node *parent, node *child);
+void addParents(char child[]);
+void insertChild(node *parent, node *child);
+void insertParent(node *child, node *parent);
 node *getNode(char commit[]);
 void printNodeHashes();
 void printHash(int index);
@@ -39,9 +44,9 @@ struct nlist *install(char *name, int index);
 
     /* PRINTING */
 
-void printGraph(char root[]);
+void printGraph(char root[], int numcommits);
 void getFirstSix(char head[], char smallHead[]);
-void lineformat(node *children[], int numchildren);
+void lineFormat(node *children[], int numchildren);
 
     /* UTILITY/MISC */
 
