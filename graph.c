@@ -17,6 +17,8 @@ void treeInit(char *commits[], int numcommits)
         addNode(commits[i]);
     for (i = 0; i < numcommits; i++)
         addChildren(commits[i]);
+    for (i = 0; i < numcommits; i++)
+        addParents(commits[i]);
 }
 
 int addNode(char hash[])
@@ -40,16 +42,36 @@ void addChildren(char child[])
     numparents = getParent(child, parents);
     for (i = 0; i < numparents; i++) {
         parptr = getNode(parents[i]);
-        insertPtr(parptr, childptr);
+        insertChild(parptr, childptr);
+    }
+}
+
+void addParents(char child[])
+{
+    node *childptr = getNode(child);
+    node *parptr;
+    char *parents[10];
+    int numparents, i = 0;
+    numparents = getParent(child, parents);
+    for (i = 0; i < numparents; i++) {
+        parptr = getNode(parents[i]);
+        insertParent(childptr, parptr);
     }
 }
 
 // fun with pointers!
-void insertPtr(node *parent, node *child)
+void insertChild(node *parent, node *child)
 {
     int numchildren = parent->numchildren;
     parent->children[numchildren] = child;
     parent->numchildren++;
+}
+
+void insertParent(node *child, node *parent)
+{
+    int numparents = child->numparents;
+    child->parents[numparents] = parent;
+    child->numparents++;
 }
 
 node *getNode(char commit[])

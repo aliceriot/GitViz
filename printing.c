@@ -12,18 +12,16 @@ char *lines[1000];
 void printGraph(char rootHash[])
 {
     node *root = getNode(rootHash);
-    node *child;
-    int num = root->numchildren;
+    node *parent;
+    int num = root->numparents;
     int i;
     for (i = 0; i < num; i++) {
         char hash[42];
-        child = root->children[i];
-        printf("%s\n", child->commitHash);
+        parent = root->parents[i];
+        printf("%s\n", parent->commitHash);
     }
     printf("%s\n", printBuffer);
 }
-
-        
 
 void lineformat(node *children[], int numchildren)
 {
