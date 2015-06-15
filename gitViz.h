@@ -49,6 +49,7 @@ void getFirstSix(char head[], char smallHead[]);
 void lineFormat(node *children[], int numchildren);
 int findColumn(char *hash);
 void columnDelete(int index);
+void columnInsert(node *commit, int index);
 
     /* UTILITY/MISC */
 

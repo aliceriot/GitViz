@@ -29,6 +29,13 @@ void printGraph(char *commits[], int numcommits)
     int col = findColumn(commit->commitHash);
 
     printf("%d\n", col);
+
+    columnInsert(getNode(commits[2]), 4);
+
+    col = findColumn(commits[2]);
+
+    printf("%d\n", col);
+
     
 }
         
@@ -55,7 +62,17 @@ void columnDelete(int index)
 }
 
 // insert a number of columns for a commit at a location
-void columnInsert(char *hash, int numchildren, int index);
+void columnInsert(node *commit, int index)
+{
+    node *temp;
+    if (index == 9)
+        columns[9] = commit;
+    else {
+        temp = columns[index];
+        columns[index] = commit;
+        columnInsert(temp, index+1);
+    }
+}       
 
     /* MAYBE THROW AWAY? */
 
