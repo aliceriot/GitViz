@@ -9,41 +9,55 @@ node *columns[10];
 
 
 
-void printGraph(char rootHash[], int numcommits)
+void printGraph(char *commits[], int numcommits)
 {
     //printInitialize();
-    node *root = getNode(rootHash);
-    node *commit;
+    node *root = getNode(commits[0]);
+    node *commit = getNode(commits[2]);
+    memset(columns, 0, sizeof(node *));
     
-    lineFormat(rootHash);
+    printf("problem!");
+    
+    // lineFormat(rootHash);
     columns[0] = root;
+    columns[1] = commit;
 
-    int i,j;
-    for (i = 0; i < numcommits; i++) {
-        commit = getNode(commits[i]);
-        int numcols
-        if (commit->numparents == 1)
+    printf("\nroot: %s\n", root->commitHash);
 
+    columnDelete(0);
 
-                
+    int col = findColumn(commit->commitHash);
 
-        
-
-
-    }
+    printf("%d\n", col);
+    
 }
         
     /* TO IMPLEMENT */
 
 // return the rightmost column for a commit
-int findColumn(char *hash);
+int findColumn(char *hash)
+{
+    int i;
+    node *ptr = getNode(hash);
+    for (i = 9; i >= 0; i--) {
+        if (ptr == columns[i])
+            return i;
+    }
+    return -1;
+}
 
-// remove a particular column index (do all 
-// the shifting and stuff)
-void columnShift(int index);
+void columnDelete(int index)
+{
+    int i;
+    for (i = index; i < 8; i++)
+        columns[i] = columns[i+1];
+    columns[9] = 0;
+}
 
 // insert a number of columns for a commit at a location
 void columnInsert(char *hash, int numchildren, int index);
+
+    /* MAYBE THROW AWAY? */
 
 void lineFormat(node *children[], int numchildren)
 {

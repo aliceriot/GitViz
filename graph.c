@@ -74,7 +74,7 @@ void insertParent(node *child, node *parent)
     child->numparents++;
 }
 
-node *getNode(char commit[])
+node *getNode(char *commit)
 {
     nlist *loc;
     loc = lookup(commit);
