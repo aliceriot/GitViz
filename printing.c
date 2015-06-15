@@ -12,16 +12,12 @@ node *columns[10];
 void printGraph(char *commits[], int numcommits)
 {
     //printInitialize();
-    node *root = getNode(commits[0]);
     memset(columns, 0, 10*sizeof(node *));
-    
-    char line[100];
+    char *p = printBuffer;
+    char line[200];
     memset(line, '\0', 100*sizeof(char));
-    // asciiColumns(3, line);
 
-    // printf("%s\n", line);
-
-    asciiSplit(5, 2, line);
+    asciiMerge(2, 6, 8, line);
     
     printf("%s\n", line);
 }
@@ -96,7 +92,26 @@ void asciiSplit(int splits, int column, char *line)
     strcat(line, "\n");
 }
        
-    
+// lets us draw a merge from right to left (indices)
+void asciiMerge(int left, int right, int extra, char *line)
+{ // extra is stuff to the right
+    int i, j;
+    for (i = 0; i < left -1; i++)
+        strcat(line, "| ");
+    for (i = left; i < right -1; i++)
+        strcat(line, "|_");
+    if (extra != 0) {
+        strcat(line, "/ ");
+        for (i = right; i < extra+1; i++)
+            strcat(line, "| ");
+        strcat(line, "\n");
+    } else {
+        strcat(line, "/ \n");
+    }
+}
+
+
+
 
 
 

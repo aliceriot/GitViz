@@ -51,6 +51,7 @@ void columnDelete(int index);
 void columnInsert(node *commit, int index);
 void asciiColumns(int numbranches, char *line);
 void asciiSplit(int splits, int column, char *line);
+void asciiMerge(int left, int right, int extra, char *line);
 
     /* UTILITY/MISC */
 
