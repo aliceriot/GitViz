@@ -33,20 +33,6 @@ void headRef(char hash[], char dir[])
     fclose(branch);
 }
 
-void hashLocation(char hash[], char location[], char dir[])
-{
-    char scratchBuffer[MAXLINE];
-
-    strcpy(location, dir);
-    strcat(location, "/.git/objects/");
-    sscanf(hash, "%2s%*S", scratchBuffer);
-    strcat(location,scratchBuffer);
-    strcat(location,"/");
-    sscanf(hash, "%*2s%s", scratchBuffer);
-    strcat(location,scratchBuffer);
-}
-
-
 void commitContents(char hash[], char contents[])
 {
     FILE *commitHandle;
@@ -68,4 +54,3 @@ void stringShift(char s[], int shift)
     i -= shift;
     s[i] = '\0';
 }
-

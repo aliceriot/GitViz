@@ -7,8 +7,7 @@ char printBuffer[10000];
 int columns[10];
 
 void printGraph(char *commits[], int numcommits)
-{
-    //printInitialize();
+{ // please pretend this isn't hideous!
     memset(columns, -1, 10*sizeof(int));
     node *commit, *tempone, *temptwo, *childptr;
     char smallHash[6];
@@ -167,7 +166,7 @@ void asciiSplit(int splits, int column, char *line)
             strcat(line, "| ");
         for (j = 0; j < i; j++)
             strcat(line, "| ");
-        strcat(line, "| \\\n");
+        strcat(line, "|\\\n");
     }
     for (j = 0; j < splits+column; j++)
         strcat(line, "| ");
