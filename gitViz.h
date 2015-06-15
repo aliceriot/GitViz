@@ -46,10 +46,10 @@ struct nlist *install(char *name, int index);
 
 void printGraph(char *commits[], int numcommits);
 void getFirstSix(char head[], char smallHead[]);
-void lineFormat(node *children[], int numchildren);
 int findColumn(char *hash);
 void columnDelete(int index);
 void columnInsert(node *commit, int index);
+void asciiColumns(int numbranches, char *line);
 
     /* UTILITY/MISC */
 

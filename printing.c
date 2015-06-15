@@ -13,33 +13,17 @@ void printGraph(char *commits[], int numcommits)
 {
     //printInitialize();
     node *root = getNode(commits[0]);
-    node *commit = getNode(commits[2]);
     memset(columns, 0, sizeof(node *));
     
-    printf("problem!");
-    
-    // lineFormat(rootHash);
-    columns[0] = root;
-    columns[1] = commit;
+    char line[100];
+    asciiColumns(3, line);
 
-    printf("\nroot: %s\n", root->commitHash);
-
-    columnDelete(0);
-
-    int col = findColumn(commit->commitHash);
-
-    printf("%d\n", col);
-
-    columnInsert(getNode(commits[2]), 4);
-
-    col = findColumn(commits[2]);
-
-    printf("%d\n", col);
+    printf("%s\n", line);
 
     
 }
         
-    /* TO IMPLEMENT */
+    /* COLUMN INDEX HANDLING */
 
 // return the rightmost column for a commit
 int findColumn(char *hash)
@@ -74,32 +58,7 @@ void columnInsert(node *commit, int index)
     }
 }       
 
-    /* MAYBE THROW AWAY? */
-
-void lineFormat(node *children[], int numchildren)
-{
-    int i;
-    char smallHead[6];
-    node *child;
-    char buffer[100];
-    char lineone[] = "\t~~~~~~\n\t";
-    char linetwo[] = "\n\t~~~~~~";
-
-    for (i = 0; i < numchildren; i++) {
-        child = children[i];
-        getFirstSix(child->commitHash, smallHead);
-        strcat(buffer, lineone);
-        strcat(buffer, smallHead);
-        strcat(buffer, linetwo);
-    }
-    printf("%s\n", buffer);
-    strcat(printBuffer, buffer);
-}
-
- /* how to print! */
- /*    ~~~~~~ */
- /*    18cf46 */
- /*    ~~~~~~ */
+    /* PRINTING / ASCII */
 
 void getFirstSix(char head[], char smallHead[])
 {
@@ -109,3 +68,15 @@ void getFirstSix(char head[], char smallHead[])
     }
     smallHead[6] = '\0';
 }
+
+// 
+void asciiColumns(int numbranches, char *line)
+{
+    int i;
+    for (i = 0; i < numbranches*2; i +=2) {
+        line[i] = '|';
+        line[i+1] = ' ';
+    }
+}
+
+
