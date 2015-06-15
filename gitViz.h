@@ -16,10 +16,11 @@ struct node {
     node *parents[10];
     int numchildren;
     int numparents;
+    int key;
 };
 
 void treeInit(char  *commits[], int numcommits);
-int addNode(char hash[]);
+int addNode(char hash[], int index);
 void addChildren(char child[]);
 void addParents(char child[]);
 void insertChild(node *parent, node *child);

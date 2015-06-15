@@ -14,19 +14,20 @@ void treeInit(char *commits[], int numcommits)
     initialize();
     int i;
     for (i = 0; i < numcommits; i++)
-        addNode(commits[i]);
+        addNode(commits[i], i);
     for (i = 0; i < numcommits; i++)
         addChildren(commits[i]);
     for (i = 0; i < numcommits; i++)
         addParents(commits[i]);
 }
 
-int addNode(char hash[])
+int addNode(char hash[], int index)
 {
     node *temp;
     temp = malloc(sizeof(node));
     (*temp).commitHash = hash;
     (*temp).numchildren = 0;
+    (*temp).key = index;
     treeIndex[p] = temp;
     install(hash, p);
     p++;

@@ -15,7 +15,7 @@ void printGraph(char *commits[], int numcommits)
     char *p = printBuffer;
     char line[200];
     
-    int i, parents, children, numbranches;
+    int i, j, parents, children, numbranches;
 
     // handle root first
     memset(line, '\0', 100*sizeof(char));
@@ -41,20 +41,27 @@ void printGraph(char *commits[], int numcommits)
         getFirstSix(commit->commitHash, smallHash);
         numpar = commit->numparents;
         numchild = commit->numchildren;
+        for (j = 0; j < 10; j++) {
+            printf("%d ", findColumn(commits[i]));
+        }
+        printf("\n");
 
             /* MERGING */
 
         if (numpar > 1) { 
-            for (i = numpar; i > 1; i--) {
-                tempone = commit->parents[i];
+            printf("\n\n what?? \n\n");
+            for (j = 1; j < numpar; j++) {
+                tempone = commit->parents[j-1];
                 index1 = findColumn(tempone->commitHash);
-                temptwo = commit->parents[i-1];
+                temptwo = commit->parents[j];
                 index2 = findColumn(temptwo->commitHash);
                 if (index1 < index2) {
+                    printf("num %d, in1 %d, in2 %d\n", numbranches, index1, index2);
                     asciiMerge(index1, index2, numbranches - index2, line);
                     columnDelete(index2);
                 }
                 else {
+                    printf("num %d, in1 %d, in2 %d\n", numbranches, index1, index2);
                     asciiMerge(index2, index1, numbranches - index1, line);
                     columnDelete(index1);
                 }
@@ -78,9 +85,10 @@ void printGraph(char *commits[], int numcommits)
         } else { // need to branch
             childptr = commit->children[0];
             columns[index1] = childptr;
-            for (i = 1; i < commit->numchildren; i++)
-                columnInsert(commit->children[i], index1);
-            printf("yikes!\n");
+            for (j = 1; j < numchild; j++) {
+                columnInsert(commit->children[j], index1);
+                numbranches++;
+            }
             asciiSplit(numchild, index1, line);
         }
             
@@ -96,11 +104,18 @@ void printGraph(char *commits[], int numcommits)
 // return the rightmost column for a commit
 int findColumn(char *hash)
 {
-    int i;
+    int i, key1, key2;
     node *ptr = getNode(hash);
+    node *temp;
+    key1 = ptr->key;
     for (i = 9; i >= 0; i--) {
-        if (ptr == columns[i])
-            return i;
+        printf("key: %d\n", key1);
+        if (columns[i] != 0) {
+            temp = columns[i];
+            key2 = temp->key;
+            if (key1 == key2)
+                return i;
+        }
     }
     return -1;
 }
@@ -177,10 +192,11 @@ void asciiSplit(int splits, int column, char *line)
 void asciiMerge(int left, int right, int extra, char *line)
 { // extra is stuff to the right
     int i, j;
-    for (i = 0; i < left -1; i++)
-        strcat(line, "| ");
+    strcat(line, "|");
+    for (i = 0; i <= left; i++)
+        strcat(line, " |");
     for (i = left; i < right -1; i++)
-        strcat(line, "|_");
+        strcat(line, " |_");
     if (extra != 0) {
         strcat(line, "/ ");
         for (i = right; i < extra+1; i++)
