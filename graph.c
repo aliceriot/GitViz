@@ -83,21 +83,6 @@ node *getNode(char *commit)
     return ptr;
 }
 
-// testing things
-void printHash(int index)
-{
-    printf("%s\n", (*treeIndex[index]).commitHash);
-}
-
-void printNodeHashes()
-{
-    int i = 0;
-    while (i < p) {
-        printf("%s\n", (*treeIndex[i]).commitHash);
-        i++;
-    }
-}
-
 // utility functions
 void initialize()
 {
