@@ -12,13 +12,6 @@ void main()
 
     numcommits = getHashes(buffer, commits);
     treeInit(commits, numcommits);
-
     printGraph(commits, numcommits);
-    
-    // testcolumns(commits);
-
-
     deinitialize(numcommits);
 }
-
-
