@@ -47,13 +47,14 @@ struct nlist *install(char *name, int index);
 
 void printGraph(char *commits[], int numcommits);
 void getFirstSix(char head[], char smallHead[]);
-int findColumn(char *hash);
+int findColumn(char *hash, int start);
 void columnDelete(int index);
-void columnInsert(node *commit, int index);
+void columnInsert(int key, int index);
 void asciiCommit(int branches, int commit, char *line);
 void asciiColumns(int numbranches, char *line);
 void asciiSplit(int splits, int column, char *line);
 void asciiMerge(int left, int right, int extra, char *line);
+void testcolumns(char *commits[]);
 
     /* UTILITY/MISC */
 

@@ -14,6 +14,9 @@ void main()
     treeInit(commits, numcommits);
 
     printGraph(commits, numcommits);
+    
+    // testcolumns(commits);
+
 
     deinitialize(numcommits);
 }
