@@ -13,14 +13,17 @@ void printGraph(char *commits[], int numcommits)
 {
     //printInitialize();
     node *root = getNode(commits[0]);
-    memset(columns, 0, sizeof(node *));
+    memset(columns, 0, 10*sizeof(node *));
     
     char line[100];
-    asciiColumns(3, line);
+    memset(line, '\0', 100*sizeof(char));
+    // asciiColumns(3, line);
 
-    printf("%s\n", line);
+    // printf("%s\n", line);
 
+    asciiSplit(5, 2, line);
     
+    printf("%s\n", line);
 }
         
     /* COLUMN INDEX HANDLING */
@@ -69,14 +72,31 @@ void getFirstSix(char head[], char smallHead[])
     smallHead[6] = '\0';
 }
 
-// 
 void asciiColumns(int numbranches, char *line)
-{
+{ // numbranches is number of columns to the left
     int i;
     for (i = 0; i < numbranches*2; i +=2) {
         line[i] = '|';
         line[i+1] = ' ';
     }
 }
+
+void asciiSplit(int splits, int column, char *line)
+{ // splits is number of total children
+    int i, j = 0;
+    for (i = 0; i < splits-1; i++) {
+        for (j = 0; j < column; j++)
+            strcat(line, "| ");
+        for (j = 0; j < i; j++)
+            strcat(line, "| ");
+        strcat(line, "| \\\n");
+    }
+    for (j = 0; j < splits+column; j++)
+        strcat(line, "| ");
+    strcat(line, "\n");
+}
+       
+    
+
 
 

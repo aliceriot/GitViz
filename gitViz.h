@@ -50,6 +50,7 @@ int findColumn(char *hash);
 void columnDelete(int index);
 void columnInsert(node *commit, int index);
 void asciiColumns(int numbranches, char *line);
+void asciiSplit(int splits, int column, char *line);
 
     /* UTILITY/MISC */
 

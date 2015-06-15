@@ -13,10 +13,7 @@ void main()
     numcommits = getHashes(buffer, commits);
     treeInit(commits, numcommits);
 
-    printf("here");
-
     printGraph(commits, numcommits);
-
 
     deinitialize(numcommits);
 }
