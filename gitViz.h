@@ -49,6 +49,7 @@ void getFirstSix(char head[], char smallHead[]);
 int findColumn(char *hash);
 void columnDelete(int index);
 void columnInsert(node *commit, int index);
+void asciiCommit(int branches, int commit, char *line);
 void asciiColumns(int numbranches, char *line);
 void asciiSplit(int splits, int column, char *line);
 void asciiMerge(int left, int right, int extra, char *line);
