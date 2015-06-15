@@ -18,7 +18,7 @@ struct node {
     int numparents;
 };
 
-void treeInit(char *commits[], int numcommits);
+void treeInit(char  *commits[], int numcommits);
 int addNode(char hash[]);
 void addChildren(char child[]);
 void addParents(char child[]);
@@ -44,9 +44,11 @@ struct nlist *install(char *name, int index);
 
     /* PRINTING */
 
-void printGraph(char root[], int numcommits);
+void printGraph(char *commits[], int numcommits);
 void getFirstSix(char head[], char smallHead[]);
 void lineFormat(node *children[], int numchildren);
+int findColumn(char *hash);
+void columnDelete(int index);
 
     /* UTILITY/MISC */
 
